@@ -1,4 +1,10 @@
 ---
+import ChannelComponent from "../../components/ChannelDetail";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 const { id } = Astro.params;
 ---
-<h1> channel: { id }</h1>
+
+<BaseLayout>
+	<ChannelComponent />
+	<h1>channel: {id}</h1>
+</BaseLayout>

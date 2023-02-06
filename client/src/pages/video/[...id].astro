@@ -1,4 +1,10 @@
 ---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import VideoDetailComponent from "../../components/VideoDetails";
 const { id } = Astro.params;
 ---
-<h1> video: { id }</h1>
+
+<BaseLayout>
+	<VideoDetailComponent />
+	<h1>video: {id}</h1>
+</BaseLayout>

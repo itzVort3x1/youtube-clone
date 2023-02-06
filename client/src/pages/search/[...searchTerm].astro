@@ -1,4 +1,10 @@
 ---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SearchFeedComponent from "../../components/SearchFeed";
 const { searchTerm } = Astro.params;
 ---
-<h1> search: { searchTerm }</h1>
+
+<BaseLayout>
+	<SearchFeedComponent />
+	<h1>search: {searchTerm}</h1>
+</BaseLayout>
