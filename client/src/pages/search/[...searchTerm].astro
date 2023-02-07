@@ -5,6 +5,5 @@ const { searchTerm } = Astro.params;
 ---
 
 <BaseLayout>
-	<SearchFeedComponent />
-	<h1>search: {searchTerm}</h1>
+	<SearchFeedComponent client:only />
 </BaseLayout>

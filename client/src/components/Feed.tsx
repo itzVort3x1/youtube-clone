@@ -28,7 +28,7 @@ const FeedComponent = () => {
 				<span className="text-4xl capitalize">{selectedCategory}</span>
 				<span className="text-red-600 ml-2 text-2xl">videos</span>
 				<br />
-				<VideosComponent videos={videos} />
+				<VideosComponent videos={videos} grids={"grids-cols-4"} />
 			</div>
 		</div>
 	);

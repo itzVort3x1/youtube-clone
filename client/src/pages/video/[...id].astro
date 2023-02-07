@@ -5,6 +5,6 @@ const { id } = Astro.params;
 ---
 
 <BaseLayout>
-	<VideoDetailComponent />
+	<VideoDetailComponent client:load />
 	<h1>video: {id}</h1>
 </BaseLayout>
