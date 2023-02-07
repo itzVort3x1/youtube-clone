@@ -11,7 +11,7 @@ const VideosComponent = ({
 }) => {
 	console.log(grids);
 	return (
-		<div className={`grid gap-4 md:${grids} sm:grid-cols-1`}>
+		<div className={`grid gap-4 ${grids}`}>
 			{videos.map((video, index) => {
 				return (
 					<div key={index}>
