@@ -8,9 +8,15 @@ const FeedComponent = () => {
 	const [videos, setVideos] = useState<any[]>([]);
 
 	useEffect(() => {
-		fetchFromAPI(`search?part=snippet&q=${selectedCategory}`).then((data) => {
-			setVideos(data.items);
-		});
+		if (localStorage.getItem(selectedCategory)) {
+			setVideos(JSON.parse(localStorage.getItem(selectedCategory) || "[]"));
+			return;
+		} else {
+			fetchFromAPI(`search?part=snippet&q=${selectedCategory}`).then((data) => {
+				setVideos(data.items);
+				localStorage.setItem(selectedCategory, JSON.stringify(data.items));
+			});
+		}
 	}, [selectedCategory]);
 
 	return (
