@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdiMusicNoteOutline } from "../assets/MusicNoteIcon";
 import { MdiHome } from "../assets/HomeIcons";
 import { MdiCodeTags } from "../assets/CodeIcon";
@@ -11,50 +11,60 @@ import { MdiDumbbell } from "../assets/SportsEsportsIcon";
 import { MdiHanger } from "../assets/CheckRoomIcon";
 import { MdiFaceManShimmer } from "../assets/FaceRetouchingNaturalIcon";
 
-const SideBarComponent = () => {
-	const [selected, setSelected] = useState<string>("Home");
+const SideBarComponent = (props) => {
+	const [selected, setSelected] = useState<string>(props.selectedCategory);
+
+	useEffect(() => {
+		props.setSelectedCategory(selected);
+	}, [selected]);
 
 	return (
 		<div className="flex flex-col">
 			<button
 				onClick={() => {
-					setSelected("Home");
+					setSelected("New");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "Home" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "New"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiHome
 					height={28}
 					width={28}
-					className={`${selected === "Home" ? "text-white" : "text-red-600"}`}
+					className={`${selected === "New" ? "text-white" : "text-red-600"}`}
 				/>
 				<span className="ml-2 mt-0.5">Home</span>
 			</button>
 			<button
 				onClick={() => {
-					setSelected("Javascipt");
+					setSelected("Js Mastery");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "Javascipt" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "Js Mastery"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiCodeTags
 					height={28}
 					width={28}
 					className={`${
-						selected === "Javascipt" ? "text-white" : "text-red-600"
+						selected === "Js Mastery" ? "text-white" : "text-red-600"
 					}`}
 				/>
-				<span className="ml-2 mt-0.5">Javascipt</span>
+				<span className="ml-2 mt-0.5">Javascript</span>
 			</button>
 			<button
 				onClick={() => {
 					setSelected("coding");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "coding" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "coding"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiCodeTags
 					height={28}
@@ -68,8 +78,10 @@ const SideBarComponent = () => {
 					setSelected("reactjs");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "reactjs" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "reactjs"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiCodeTags
 					height={28}
@@ -85,8 +97,10 @@ const SideBarComponent = () => {
 					setSelected("nextjs");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "nextjs" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "nextjs"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl `}
 			>
 				<MdiCodeTags
 					height={28}
@@ -100,8 +114,10 @@ const SideBarComponent = () => {
 					setSelected("music");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "music" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "music"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiMusicNoteOutline
 					height={28}
@@ -115,8 +131,10 @@ const SideBarComponent = () => {
 					setSelected("education");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "education" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "education"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiSchool
 					height={28}
@@ -132,8 +150,10 @@ const SideBarComponent = () => {
 					setSelected("podcast");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "podcast" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "podcast"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiGooglePodcast
 					height={28}
@@ -149,8 +169,10 @@ const SideBarComponent = () => {
 					setSelected("movie");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "movie" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "movie"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiTelevisionPlay
 					height={28}
@@ -164,8 +186,10 @@ const SideBarComponent = () => {
 					setSelected("gaming");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "gaming" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "gaming"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiController
 					height={28}
@@ -179,8 +203,10 @@ const SideBarComponent = () => {
 					setSelected("live");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "live" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "live"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiTelevisionClassic
 					height={28}
@@ -194,8 +220,10 @@ const SideBarComponent = () => {
 					setSelected("sports");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "sports" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "sports"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiDumbbell
 					height={28}
@@ -209,8 +237,10 @@ const SideBarComponent = () => {
 					setSelected("fashion");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "fashion" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "fashion"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl`}
 			>
 				<MdiHanger
 					height={28}
@@ -226,8 +256,10 @@ const SideBarComponent = () => {
 					setSelected("beauty");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "beauty" ? "bg-red-600" : "bg-transparent"
-				} p-1 rounded-3xl hover:text-white`}
+					selected === "beauty"
+						? "bg-red-600"
+						: "bg-transparent hover:text-red-600 hover:bg-white"
+				} p-1 rounded-3xl `}
 			>
 				<MdiFaceManShimmer
 					height={28}

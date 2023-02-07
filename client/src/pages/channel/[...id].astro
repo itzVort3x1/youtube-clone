@@ -5,6 +5,5 @@ const { id } = Astro.params;
 ---
 
 <BaseLayout>
-	<ChannelComponent />
-	<h1>channel: {id}</h1>
+	<ChannelComponent client:only />
 </BaseLayout>
