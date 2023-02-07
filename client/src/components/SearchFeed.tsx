@@ -28,10 +28,10 @@ const SearchFeed = () => {
 			<div className="">
 				<span className="text-2xl capitalize">Search Results for: </span>
 				<span className="capitalize text-red-600 ml-2 text-2xl">
-					{searchTerm}
+					{searchTerm.replace("%20", " ")}
 				</span>
 				<br />
-				<VideosComponent videos={videos} grids={"grids-cols-4"} />
+				<VideosComponent videos={videos} grids={"grid-cols-4"} />
 			</div>
 		</div>
 	);
