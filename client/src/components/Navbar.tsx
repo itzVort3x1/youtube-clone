@@ -3,7 +3,7 @@ import SearchBarComponent from "./SearchBar";
 
 const NavbarComponent = () => {
 	return (
-		<div className="h-12 bg-custom-backgound border-b-2 border-gray-300 text-white fixed w-full top-0">
+		<div className="h-12 bg-black border-b-2 border-gray-300 text-white fixed w-full top-0">
 			<div className="flex">
 				<div className="flex-none mr-2">
 					<div
