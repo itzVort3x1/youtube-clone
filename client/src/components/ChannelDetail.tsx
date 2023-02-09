@@ -21,7 +21,7 @@ const ChannelComponent = () => {
 	}, [id]);
 
 	return (
-		<div className="min-h-full bg-black">
+		<div className="min-h-full bg-[#111827]">
 			<div
 				style={{
 					background: "linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%)",
