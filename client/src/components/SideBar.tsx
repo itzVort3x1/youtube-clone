@@ -16,6 +16,7 @@ const SideBarComponent = (props) => {
 
 	useEffect(() => {
 		props.setSelectedCategory(selected);
+		localStorage.setItem("selectedCategory", selected);
 	}, [selected]);
 
 	return (

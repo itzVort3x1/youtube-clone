@@ -4,7 +4,9 @@ import VideosComponent from "./Videos";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 
 const FeedComponent = () => {
-	const [selectedCategory, setSelectedCategory] = useState("New");
+	const [selectedCategory, setSelectedCategory] = useState(
+		localStorage.getItem("selectedCategory") || "New"
+	);
 	const [videos, setVideos] = useState<any[]>([]);
 
 	useEffect(() => {
