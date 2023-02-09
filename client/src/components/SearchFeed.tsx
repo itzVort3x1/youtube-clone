@@ -26,11 +26,14 @@ const SearchFeed = () => {
 				<span>CopyRight @kaustubh 2022</span>
 			</div> */}
 			<div className="">
-				<span className="text-2xl capitalize">Search Results for: </span>
-				<span className="capitalize text-red-600 ml-2 text-2xl">
-					{searchTerm.replace("%20", " ")}
-				</span>
-				<br />
+				<div className="bg-gray-300 w-fit px-3 rounded-md">
+					<span className="text-2xl text-black capitalize">
+						Search Results for:{" "}
+					</span>
+					<span className="capitalize text-red-600 ml-2 text-2xl">
+						{searchTerm.replace("%20", " ")}
+					</span>
+				</div>
 				<VideosComponent videos={videos} grids={"grid-cols-4"} />
 			</div>
 		</div>
