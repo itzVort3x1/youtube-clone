@@ -21,7 +21,7 @@ const FeedComponent = () => {
 
 	return (
 		<div className="flex lg:flex-row sm:flex-col bg-black text-white">
-			<div className="px-2  bg-gray-500 w-56 rounded-lg mx-2 my-2 top-12 fixed overflow-y-hidden">
+			<div className="px-2  bg-gray-700 w-52 rounded-lg mx-2 my-2 top-12 fixed overflow-y-hidden">
 				<div>
 					<SideBarComponent
 						selectedCategory={selectedCategory}
