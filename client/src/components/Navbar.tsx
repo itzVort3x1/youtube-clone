@@ -3,7 +3,7 @@ import SearchBarComponent from "./SearchBar";
 
 const NavbarComponent = () => {
 	return (
-		<div className="h-12 bg-black text-white sticky top-0">
+		<div className="h-12 bg-black border-b-2 border-gray-300 text-white fixed w-full top-0">
 			<div className="flex">
 				<div className="flex-none mr-2">
 					<div
@@ -12,8 +12,12 @@ const NavbarComponent = () => {
 							window.location.href = "/";
 						}}
 					>
-						<span className="font-bold text-2xl text-red-600 italic">St</span>
-						<span className="font-bold text-2xl">reamy</span>
+						<span className="font-bold text-2xl text-red-600 italic bg-white rounded-tl-md pl-2 tracking-wider rounded-bl-md">
+							St
+						</span>
+						<span className="font-bold text-2xl bg-red-600 rounded-tr-md rounded-br-md pr-2 tracking-wider">
+							reamy
+						</span>
 					</div>
 				</div>
 				<div className="flex-auto w-32"></div>

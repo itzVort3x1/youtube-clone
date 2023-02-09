@@ -24,10 +24,12 @@ const VideoDetailComponent = () => {
 		});
 	}, [videoId]);
 
+	console.log(videoDetail);
+
 	return (
 		<div className="text-white">
 			<div className="flex">
-				<div className="flex-auto w-full h-96 p-5 top-12 sticky">
+				<div className="flex-auto w-full h-96 p-12 top-12 sticky">
 					<ReactPlayer
 						url={`https://www.youtube.com/watch?v=${videoId}`}
 						controls
@@ -39,7 +41,7 @@ const VideoDetailComponent = () => {
 					</div>
 					<div className="flex mt-3">
 						<div
-							className="flex-auto flex text-gray-300"
+							className="flex-auto flex text-gray-300 cursor-pointer"
 							onClick={() => {
 								window.location.href = `/channel/${videoDetail?.snippet?.channelId}`;
 							}}
@@ -50,18 +52,18 @@ const VideoDetailComponent = () => {
 							<MdiCheckCircle className="mt-2 ml-2" />
 						</div>
 						<div className="flex-auto text-right">
-							<span className="text-lg pr-5">
+							<span className="text-lg mr-5 p-2 rounded-md bg-gray-400">
 								{parseInt(videoDetail?.statistics?.viewCount).toLocaleString()}{" "}
 								Views
 							</span>
-							<span className="text-lg pr-5">
+							<span className="text-lg mr-5 p-2 rounded-md bg-gray-400">
 								{parseInt(videoDetail?.statistics?.likeCount).toLocaleString()}{" "}
 								likes
 							</span>
 						</div>
 					</div>
 				</div>
-				<div className="flex-auto w-96 p-3">
+				<div className="flex-auto w-96 p-3 border-l-2 border-gray-400">
 					<Videos videos={videos} grids={"grid-cols-1"} />
 				</div>
 			</div>

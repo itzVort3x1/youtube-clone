@@ -21,18 +21,22 @@ const FeedComponent = () => {
 
 	return (
 		<div className="flex lg:flex-row sm:flex-col bg-black text-white">
-			<div className="px-2 border-r-2 border-red-300 fixed overflow-auto">
+			<div className="px-2 border-r-2 top-12 border-red-300 fixed min-h-screen overflow-y-auto">
 				<div>
 					<SideBarComponent
 						selectedCategory={selectedCategory}
 						setSelectedCategory={setSelectedCategory}
 					/>
 				</div>
-				<span>CopyRight @kaustubh 2022</span>
+				<span className="text-sm bg-slate-300 text-black p-2 rounded-full">
+					CopyRight @kaustubh 2022
+				</span>
 			</div>
-			<div className="p-2 ml-60">
-				<span className="text-4xl capitalize">{selectedCategory}</span>
-				<span className="text-red-600 ml-2 text-2xl">videos</span>
+			<div className="p-2 ml-60 mt-12">
+				<span className="text-3xl capitalize underline decoration-red-600">
+					{selectedCategory}
+				</span>
+				<span className="text-red-600 ml-2 text-3xl">videos</span>
 				<br />
 				<VideosComponent videos={videos} grids={"grid-cols-4"} />
 			</div>

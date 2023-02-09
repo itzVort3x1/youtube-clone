@@ -39,10 +39,10 @@ const SideBarComponent = (props) => {
 			</button>
 			<button
 				onClick={() => {
-					setSelected("Js Mastery");
+					setSelected("Javascript");
 				}}
 				className={`flex mx-2 my-1.5 ${
-					selected === "Js Mastery"
+					selected === "Javascript"
 						? "bg-red-600"
 						: "bg-transparent hover:text-red-600 hover:bg-white"
 				} p-1 rounded-3xl`}
@@ -51,7 +51,7 @@ const SideBarComponent = (props) => {
 					height={28}
 					width={28}
 					className={`${
-						selected === "Js Mastery" ? "text-white" : "text-red-600"
+						selected === "Javascript" ? "text-white" : "text-red-600"
 					}`}
 				/>
 				<span className="ml-2 mt-0.5">Javascript</span>
@@ -251,7 +251,7 @@ const SideBarComponent = (props) => {
 				/>
 				<span className="ml-2 mt-0.5">Fashion</span>
 			</button>
-			<button
+			{/* <button
 				onClick={() => {
 					setSelected("beauty");
 				}}
@@ -267,7 +267,7 @@ const SideBarComponent = (props) => {
 					className={`${selected === "beauty" ? "text-white" : "text-red-600"}`}
 				/>
 				<span className="ml-2 mt-0.5">Beauty</span>
-			</button>
+			</button> */}
 		</div>
 	);
 };

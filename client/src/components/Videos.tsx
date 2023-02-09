@@ -10,7 +10,7 @@ const VideosComponent = ({
 	grids: string;
 }) => {
 	return (
-		<div className={`grid gap-4 ${grids}`}>
+		<div className={`grid gap-4 ${grids} mt-3`}>
 			{videos.map((video, index) => {
 				return (
 					<div key={index}>
