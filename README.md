@@ -4,4 +4,5 @@
 - Frontend - Astro
 - api - RapidApi
 - schema - graphql yoga
-- database - planetscale
+- server - cloudFlare workers
+- database - cockroachDB
