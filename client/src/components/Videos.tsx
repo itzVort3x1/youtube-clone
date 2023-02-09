@@ -9,7 +9,6 @@ const VideosComponent = ({
 	videos: any[];
 	grids: string;
 }) => {
-	console.log(grids);
 	return (
 		<div className={`grid gap-4 ${grids}`}>
 			{videos.map((video, index) => {
