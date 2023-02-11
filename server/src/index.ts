@@ -1,5 +1,5 @@
 import { createYoga } from "graphql-yoga";
-import { schema } from "./schema";
+import { schemaWithPermissions } from "./schema";
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
@@ -13,7 +13,8 @@ export interface Env {
 }
 
 const yoga = createYoga({
-	schema: schema,
+	graphqlEndpoint: "/",
+	schema: schemaWithPermissions,
 });
 
 export default {

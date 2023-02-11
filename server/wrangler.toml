@@ -1,3 +1,4 @@
 name = "server"
 main = "src/index.ts"
 compatibility_date = "2023-02-09"
+node_compat = true
