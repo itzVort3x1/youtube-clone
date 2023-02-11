@@ -10,7 +10,7 @@ export const typeDefinitions = `
     getShortcut(snippet: String, user_id: ID): [Shortcut!]!
   }
   type Mutation {
-    createUser(name: String!, email: String!, Org_name: String!, password: String!, id: ID!): AuthPayload!
+    createUser(name: String!, email: String!, password: String!): AuthPayload!
   }
   type Mutation {
     createShortcut(user_id: ID!, snippet: String!, url: String!, id: String!): Shortcut!
@@ -31,11 +31,11 @@ export const typeDefinitions = `
     url: String!
     id: String!
   }
+  
   type User {
     id: ID!
     name: String!
     email: String!
-    Org_name: String!
     password: String!
   }
 `;

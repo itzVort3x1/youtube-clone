@@ -12,10 +12,10 @@ import { permissions } from "./permissions";
 import { typeDefinitions } from "./types/typeDefinitions";
 
 // Imports for Queries
-import { hello } from "./queries/authQueries";
+import { hello, loginUser } from "./queries/authQueries";
 
 // Imports for Mutations
-// import { hello } from "./mutations/authMutation";
+import { createUser } from "./mutations/authMutation";
 
 // Imports for middlewares
 import { validateEmail } from "./middlewares/emailValidation";
@@ -24,8 +24,11 @@ import { isValidURL } from "./middlewares/urlValidation";
 const resolvers = {
 	Query: {
 		hello: hello,
+		loginUser: loginUser,
 	},
-	Mutation: {},
+	Mutation: {
+		createUser: createUser,
+	},
 };
 
 // const isLoginValidation = rule({ cache: "contextual" })(
