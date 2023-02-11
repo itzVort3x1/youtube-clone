@@ -7,4 +7,4 @@ Check it out: [Streamy](https://streamy.pages.dev/)
 - api - RapidApi
 - schema - graphql yoga
 - server - cloudFlare workers
-- database - cockroachDB
+- database - planetscare
