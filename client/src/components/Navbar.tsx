@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import SearchBarComponent from "./SearchBar";
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
 import { ChevronDownIcon } from "../assets/ChevronDown";
 import { EllipsisVerticalIcon } from "../assets/Ellipsis-Vertical";
 
 const NavbarComponent = () => {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	return (
 		<div className="h-12 bg-black border-b-2 border-gray-300 text-white fixed w-full top-0">
 			<div className="flex">
@@ -49,65 +49,68 @@ const NavbarComponent = () => {
 						>
 							<Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 								<div className="px-1 py-1 ">
-									<Menu.Item>
-										{({ active }) => (
-											<button
-												className={`${
-													active ? "bg-violet-500 text-white" : "text-gray-900"
-												} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-											>
-												Edit
-											</button>
-										)}
-									</Menu.Item>
-									<Menu.Item>
-										{({ active }) => (
-											<button
-												className={`${
-													active ? "bg-violet-500 text-white" : "text-gray-900"
-												} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-											>
-												Duplicate
-											</button>
-										)}
-									</Menu.Item>
-								</div>
-								<div className="px-1 py-1">
-									<Menu.Item>
-										{({ active }) => (
-											<button
-												className={`${
-													active ? "bg-violet-500 text-white" : "text-gray-900"
-												} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-											>
-												Archive
-											</button>
-										)}
-									</Menu.Item>
-									<Menu.Item>
-										{({ active }) => (
-											<button
-												className={`${
-													active ? "bg-violet-500 text-white" : "text-gray-900"
-												} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-											>
-												Move
-											</button>
-										)}
-									</Menu.Item>
-								</div>
-								<div className="px-1 py-1">
-									<Menu.Item>
-										{({ active }) => (
-											<button
-												className={`${
-													active ? "bg-violet-500 text-white" : "text-gray-900"
-												} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-											>
-												Delete
-											</button>
-										)}
-									</Menu.Item>
+									{!isLoggedIn && (
+										<>
+											<Menu.Item>
+												{({ active }) => (
+													<button
+														onClick={() => {
+															window.location.href = "/login";
+														}}
+														className={`${
+															active ? "bg-red-500 text-white" : "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													>
+														Login
+													</button>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<button
+														onClick={() => {
+															window.location.href = "/signup";
+														}}
+														className={`${
+															active ? "bg-red-500 text-white" : "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													>
+														Signup
+													</button>
+												)}
+											</Menu.Item>
+										</>
+									)}
+									{isLoggedIn && (
+										<>
+											<Menu.Item>
+												{({ active }) => (
+													<button
+														className={`${
+															active
+																? "bg-violet-500 text-white"
+																: "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													>
+														Account
+													</button>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<button
+														className={`${
+															active
+																? "bg-violet-500 text-white"
+																: "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													>
+														Logout
+													</button>
+												)}
+											</Menu.Item>
+										</>
+									)}
 								</div>
 							</Menu.Items>
 						</Transition>
