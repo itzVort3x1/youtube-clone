@@ -16,9 +16,8 @@ const VideoCard = ({
 }: {
 	video: { id: { videoId: string }; snippet: any };
 }) => {
-	console.log(snippet);
 	return (
-		<div className="max-w-sm max-h-96 min-h-80 bg-white border border-gray-200 rounded-lg shadow dark:bg-transparent dark:border-gray-700">
+		<div className="max-w-md max-h-96 min-h-80 bg-white border border-gray-200 rounded-lg shadow dark:bg-transparent dark:border-gray-700">
 			<a href={`${videoId ? `/video/${videoId}` : demoVideoUrl}`}>
 				<img
 					className="rounded-t-lg"

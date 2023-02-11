@@ -15,6 +15,7 @@
     "@astrojs/cloudflare": "^6.1.1",
     "@astrojs/react": "^2.0.2",
     "@astrojs/tailwind": "^3.0.1",
+    "@headlessui/react": "^1.7.10",
     "@nanostores/persistent": "^0.7.0",
     "@nanostores/react": "^0.4.1",
     "@types/react": "^18.0.27",
