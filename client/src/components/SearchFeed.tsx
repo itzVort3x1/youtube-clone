@@ -15,7 +15,7 @@ const SearchFeed = () => {
 	}, [searchTerm]);
 
 	return (
-		<div className="flex lg:flex-row sm:flex-col bg-black text-white mt-12 p-4">
+		<div className="flex lg:flex-row sm:flex-col bg-slate-800 text-white mt-12 p-4">
 			{/* <div className="px-2 border-r-2 border-red-300 fixed overflow-auto">
 				<div>
 					<SideBarComponent
