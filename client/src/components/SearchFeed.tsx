@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import SideBarComponent from "./SideBar";
 import VideosComponent from "./Videos";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { useStore } from "@nanostores/react";
+import { isLoggedIn } from "../store/store";
 
 const SearchFeed = () => {
 	const [videos, setVideos] = useState<any[]>([]);
+	const $isLoggedIn = useStore(isLoggedIn);
 
 	const searchTerm = window.location.pathname.split("/").pop();
 

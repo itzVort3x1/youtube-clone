@@ -12,7 +12,7 @@ import { permissions } from "./permissions";
 import { typeDefinitions } from "./types/typeDefinitions";
 
 // Imports for Queries
-import { hello, loginUser } from "./queries/authQueries";
+import { loginUser, loggedInUser } from "./queries/authQueries";
 
 // Imports for Mutations
 import { createUser } from "./mutations/authMutation";
@@ -23,8 +23,8 @@ import { isValidURL } from "./middlewares/urlValidation";
 
 const resolvers = {
 	Query: {
-		hello: hello,
 		loginUser: loginUser,
+		loggedInUser: loggedInUser,
 	},
 	Mutation: {
 		createUser: createUser,

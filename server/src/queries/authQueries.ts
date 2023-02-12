@@ -4,10 +4,6 @@ import { createGraphQLError } from "graphql-yoga";
 import jwt from "@tsndr/cloudflare-worker-jwt";
 import { APP_SECRET } from "../auth";
 
-export function hello(): string {
-	return "Hello world!";
-}
-
 export async function loginUser(
 	parent: unknown,
 	args: { email: string; password: string }
@@ -27,4 +23,25 @@ export async function loginUser(
 	const token = await jwt.sign({ user: user.id }, APP_SECRET);
 
 	return { token, user };
+}
+
+// this returns the logged in users details along with their bookmarked videos
+export async function loggedInUser(
+	parent: unknown,
+	args: { id: string },
+	ctx: any
+) {
+	const userId = args.id;
+	if (!userId) {
+		return createGraphQLError("Not Authenticated");
+	}
+	const results = await conn.execute(
+		`SELECT * FROM youtubeUsers WHERE id = ${parseInt(userId)}`
+	);
+	const bookmarks = await conn.execute(
+		`SELECT * FROM youtubeBookmarks WHERE user_id = ${parseInt(userId)}`
+	);
+
+	const user: any = results.rows[0];
+	return { user, bookmarks: bookmarks.rows };
 }
