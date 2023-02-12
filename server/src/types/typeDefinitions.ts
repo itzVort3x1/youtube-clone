@@ -6,6 +6,11 @@ export const typeDefinitions = `
   type Mutation {
     createUser(name: String!, email: String!, password: String!): AuthPayload!
   }
+
+  type Mutation {
+    createBookmark(user_id: ID!, video_id: String!): Bookmarks!
+  }
+
   type AuthPayload {
     token: String!
     user: User
@@ -26,7 +31,6 @@ export const typeDefinitions = `
     id: ID!
     user_id: ID!
     video_id: String!
-    video_url: String!
   }
   
   type User {

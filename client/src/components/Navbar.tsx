@@ -4,12 +4,39 @@ import { Menu, Transition } from "@headlessui/react";
 import { isLoggedIn, token, userDetails } from "../store/store";
 import { EllipsisVerticalIcon } from "../assets/Ellipsis-Vertical";
 import { useStore } from "@nanostores/react";
+import headers from "../utils/headers";
 
 const NavbarComponent = () => {
 	const $isLoggedIn = useStore(isLoggedIn);
 	const $userDetails = useStore(userDetails);
 	const [isAuth] = useState(JSON.parse($isLoggedIn));
 	const [details] = useState(JSON.parse($userDetails));
+
+	function fetchUserDetails() {
+		var graphql = JSON.stringify({
+			query:
+				"query loggedInUser($id: ID!){\n  loggedInUser(id: $id){\n    user{\n      email\n      name\n      id\n    }\n    bookmarks{\n      id\n      video_id\n      video_url\n    }\n  }\n}",
+			variables: { id: details.user.id },
+		});
+
+		var requestOptions = {
+			method: "POST",
+			headers: headers,
+			body: graphql,
+		};
+		fetch("https://server.kaustubh10.workers.dev", requestOptions)
+			.then((response) => response.text())
+			.then((result) => {
+				const { data, errors } = JSON.parse(result);
+				userDetails.set(JSON.stringify(data.loggedInUser));
+			})
+			.catch((error) => console.log("error", error));
+	}
+
+	useEffect(() => {
+		fetchUserDetails();
+	}, []);
+
 	return (
 		<div className="h-12 bg-slate-800 border-b-2 border-gray-300 text-white fixed w-full top-0">
 			<div className="flex">
