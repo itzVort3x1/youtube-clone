@@ -15,8 +15,8 @@ const NavbarComponent = () => {
 	function fetchUserDetails() {
 		var graphql = JSON.stringify({
 			query:
-				"query loggedInUser($id: ID!){\n  loggedInUser(id: $id){\n    user{\n      email\n      name\n      id\n    }\n    bookmarks{\n      id\n      video_id\n      video_url\n    }\n  }\n}",
-			variables: { id: details.user.id },
+				"query loggedInUser($id: ID!){\n  loggedInUser(id: $id){\n    user{\n      email\n      name\n      id\n    }\n    bookmarks{\n      id\n      video_id\n }\n  }\n}",
+			variables: { id: details?.user?.id },
 		});
 
 		var requestOptions = {
@@ -143,6 +143,7 @@ const NavbarComponent = () => {
 														onClick={() => {
 															token.set("");
 															isLoggedIn.set(JSON.stringify(false));
+															localStorage.clear();
 															window.location.href = "/login";
 														}}
 														className={`${

@@ -11,6 +11,10 @@ export const typeDefinitions = `
     createBookmark(user_id: ID!, video_id: String!): Bookmarks!
   }
 
+  type Mutation {
+    deleteBookmark(user_id: ID!, video_id: String!): Bookmarks!
+  }
+
   type AuthPayload {
     token: String!
     user: User

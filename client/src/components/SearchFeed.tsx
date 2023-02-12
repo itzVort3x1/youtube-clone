@@ -33,7 +33,7 @@ const SearchFeed = () => {
 					<span className="text-2xl text-black capitalize">
 						Search Results for:{" "}
 					</span>
-					<span className="capitalize text-red-600 ml-2 text-2xl">
+					<span className="capitalize text-rose-600 ml-2 text-2xl">
 						{searchTerm.replace("%20", " ")}
 					</span>
 				</div>

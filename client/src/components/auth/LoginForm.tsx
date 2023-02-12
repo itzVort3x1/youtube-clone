@@ -26,7 +26,7 @@ const LoginFormComponent = () => {
 	function handleUserDetails(id: string) {
 		var graphql = JSON.stringify({
 			query:
-				"query loggedInUser($id: ID!){\n  loggedInUser(id: $id){\n    user{\n      email\n      name\n      id\n    }\n    bookmarks{\n      id\n      video_id\n      video_url\n    }\n  }\n}",
+				"query loggedInUser($id: ID!){\n  loggedInUser(id: $id){\n    user{\n      email\n      name\n      id\n    }\n    bookmarks{\n      id\n      video_id\n   }\n  }\n}",
 			variables: { id: id },
 		});
 

@@ -16,7 +16,7 @@ import { loginUser, loggedInUser } from "./queries/authQueries";
 
 // Imports for Mutations
 import { createUser } from "./mutations/authMutation";
-import { bookmarkMutation } from "./mutations/bookmarkMutation";
+import { bookmarkMutation, deleteBookmark } from "./mutations/bookmarkMutation";
 
 // Imports for middlewares
 import { validateEmail } from "./middlewares/emailValidation";
@@ -30,6 +30,7 @@ const resolvers = {
 	Mutation: {
 		createUser: createUser,
 		createBookmark: bookmarkMutation,
+		deleteBookmark: deleteBookmark,
 	},
 };
 

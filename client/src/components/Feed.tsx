@@ -39,10 +39,10 @@ const FeedComponent = () => {
 				</span> */}
 			</div>
 			<div className="p-2 ml-60 mt-12">
-				<span className="text-3xl capitalize underline decoration-red-600">
+				<span className="text-3xl capitalize underline decoration-rose-600">
 					{selectedCategory}
 				</span>
-				<span className="text-red-600 ml-2 text-3xl">videos</span>
+				<span className="text-rose-600 ml-2 text-3xl">videos</span>
 				<br />
 				<VideosComponent videos={videos} grids={"grid-cols-4"} />
 			</div>

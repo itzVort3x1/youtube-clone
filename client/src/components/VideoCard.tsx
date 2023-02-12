@@ -10,8 +10,9 @@ import { MdiCheckCircle } from "../assets/CheckCricleIcon";
 import { BookmarkIcon, BookmarkIconSolid } from "../assets/BookmarkIcon";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { isLoggedIn } from "../store/store";
+import { isLoggedIn, userDetails } from "../store/store";
 import { useStore } from "@nanostores/react";
+import headers from "../utils/headers";
 
 const VideoCard = ({
 	video: {
@@ -24,6 +25,93 @@ const VideoCard = ({
 	const [isOpen, setIsOpen] = useState(false);
 	const $isLoggedIn = useStore(isLoggedIn);
 	const [isAuth] = useState(JSON.parse($isLoggedIn));
+	const details = JSON.parse(useStore(userDetails));
+	console.log(details);
+
+	function handleAddFavourite(videoId: string) {
+		var graphql = JSON.stringify({
+			query:
+				"mutation createBookmark($user_id: ID!, $video_id: String!){\n  createBookmark(user_id: $user_id, video_id: $video_id){id\n    video_id\n  }\n}",
+			variables: { user_id: details.user.id, video_id: videoId },
+		});
+
+		var requestOptions = {
+			method: "POST",
+			headers: headers,
+			body: graphql,
+		};
+
+		fetch("https://server.kaustubh10.workers.dev", requestOptions)
+			.then((response) => response.text())
+			.then((result) => {
+				const { data, errors } = JSON.parse(result);
+				userDetails.set(
+					JSON.stringify({
+						...details,
+						bookmarks: [...details.bookmarks, data.createBookmark],
+					})
+				);
+			})
+			.catch((error) => console.log("error", error));
+	}
+
+	function handleRemoveFavourite(videoId: string) {
+		var graphql = JSON.stringify({
+			query:
+				"mutation deleteBookmark($user_id: ID!, $video_id: String!){\n  deleteBookmark(user_id: $user_id, video_id: $video_id){\n    video_id\n    user_id\n  }\n}",
+			variables: { user_id: details.user.id, video_id: videoId },
+		});
+
+		var requestOptions = {
+			method: "POST",
+			headers: headers,
+			body: graphql,
+		};
+
+		fetch("https://server.kaustubh10.workers.dev", requestOptions)
+			.then((response) => response.text())
+			.then((result) => {
+				const { data, errors } = JSON.parse(result);
+				let json = details;
+
+				json.bookmarks = json.bookmarks.filter(
+					(bookmark) => bookmark.video_id !== data.deleteBookmark.video_id
+				);
+
+				userDetails.set(JSON.stringify(json));
+			})
+			.catch((error) => console.log("error", error));
+	}
+
+	function handleIconRender(videoId: string) {
+		return details?.bookmarks?.find(
+			(bookmark: any) => bookmark.video_id === videoId
+		) ? (
+			<div
+				onClick={() => {
+					if (!isAuth) {
+						openModal();
+					}
+					handleRemoveFavourite(videoId);
+				}}
+				className="cursor-pointer"
+			>
+				<BookmarkIconSolid className="w-6 h-6 decoration-solid text-rose-500" />
+			</div>
+		) : (
+			<div
+				onClick={() => {
+					if (!isAuth) {
+						openModal();
+					}
+					handleAddFavourite(videoId);
+				}}
+				className="cursor-pointer"
+			>
+				<BookmarkIcon className="w-6 h-6 text-white decoration-solid" />
+			</div>
+		);
+	}
 
 	function closeModal() {
 		setIsOpen(false);
@@ -65,16 +153,38 @@ const VideoCard = ({
 								<MdiCheckCircle className="ml-2 mt-0.5" />
 							</span>
 						</a>
-						<div
-							onClick={() => {
-								if (!isAuth) {
-									openModal();
-								}
-							}}
-							className="cursor-pointer"
-						>
-							<BookmarkIcon className="w-6 h-6 decoration-solid" />
-						</div>
+						{handleIconRender(videoId)}
+						{/* {details.bookmarks.map((item) => {
+							if (item.video_id === videoId) {
+								return (
+									<div
+										onClick={() => {
+											if (!isAuth) {
+												openModal();
+											}
+											handleAddFavourite(videoId);
+										}}
+										className="cursor-pointer"
+									>
+										<BookmarkIconSolid className="w-6 h-6 decoration-solid" />
+									</div>
+								);
+							} else {
+								return (
+									<div
+										onClick={() => {
+											if (!isAuth) {
+												openModal();
+											}
+											handleAddFavourite(videoId);
+										}}
+										className="cursor-pointer"
+									>
+										<BookmarkIcon className="w-6 h-6 decoration-solid" />
+									</div>
+								);
+							}
+						})} */}
 					</div>
 				</div>
 			</div>

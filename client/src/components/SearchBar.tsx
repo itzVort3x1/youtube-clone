@@ -25,8 +25,7 @@ const SearchBarComponent = () => {
 			<MaterialSymbolsSearchRounded
 				height={28}
 				width={28}
-				color="red"
-				className="mt-0.5"
+				className="mt-0.5 text-rose-600"
 			/>
 			<input
 				className="bg-transparent focus:outline-none text-black"
