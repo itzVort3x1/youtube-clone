@@ -1,9 +1,8 @@
 import { persistentAtom } from "@nanostores/persistent";
 import { WritableAtom } from "nanostores";
 
-const userDetails = {};
+export const isLoggedIn = persistentAtom("isLoggedIn", JSON.stringify(false));
 
-export const isLoggedIn = persistentAtom(
-	"loggedIn",
-	JSON.stringify(userDetails)
-);
+export const userDetails = persistentAtom("userDetails", JSON.stringify({}));
+
+export const token = persistentAtom("token", "");

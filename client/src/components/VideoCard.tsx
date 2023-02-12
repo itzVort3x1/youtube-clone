@@ -10,6 +10,8 @@ import { MdiCheckCircle } from "../assets/CheckCricleIcon";
 import { BookmarkIcon, BookmarkIconSolid } from "../assets/BookmarkIcon";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import { isLoggedIn } from "../store/store";
+import { useStore } from "@nanostores/react";
 
 const VideoCard = ({
 	video: {
@@ -20,6 +22,8 @@ const VideoCard = ({
 	video: { id: { videoId: string }; snippet: any };
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const $isLoggedIn = useStore(isLoggedIn);
+	const [isAuth] = useState(JSON.parse($isLoggedIn));
 
 	function closeModal() {
 		setIsOpen(false);
@@ -63,7 +67,7 @@ const VideoCard = ({
 						</a>
 						<div
 							onClick={() => {
-								if (!localStorage.getItem("token")) {
+								if (!isAuth) {
 									openModal();
 								}
 							}}

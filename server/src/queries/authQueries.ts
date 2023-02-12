@@ -3,11 +3,15 @@ import { hash, compare } from "bcryptjs";
 import { createGraphQLError } from "graphql-yoga";
 import jwt from "@tsndr/cloudflare-worker-jwt";
 import { APP_SECRET } from "../auth";
+import { validateEmail } from "../middlewares/emailValidation";
 
 export async function loginUser(
 	parent: unknown,
 	args: { email: string; password: string }
 ) {
+	if (!validateEmail(args.email)) {
+		return createGraphQLError("Invalid Email");
+	}
 	const results = await conn.execute(
 		`SELECT * FROM youtubeUsers WHERE email = "${args.email}"`
 	);

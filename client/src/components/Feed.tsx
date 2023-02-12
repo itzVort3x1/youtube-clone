@@ -3,15 +3,15 @@ import SideBarComponent from "./SideBar";
 import VideosComponent from "./Videos";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { useStore } from "@nanostores/react";
-import { isLoggedIn } from "../store/store";
+import { isLoggedIn, token } from "../store/store";
+import {} from "../store/store";
 
 const FeedComponent = () => {
 	const [selectedCategory, setSelectedCategory] = useState("New");
 	const [videos, setVideos] = useState<any[]>([]);
 
+	const $token = useStore(token);
 	const $isLoggedIn = useStore(isLoggedIn);
-	isLoggedIn.set(JSON.stringify(true));
-	// $isLoggedIn.set("loggedIn", JSON.stringify(true));
 
 	useEffect(() => {
 		if (localStorage.getItem(selectedCategory)) {

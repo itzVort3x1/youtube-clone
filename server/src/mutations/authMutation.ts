@@ -4,10 +4,6 @@ import jwt from "@tsndr/cloudflare-worker-jwt";
 import { APP_SECRET } from "../auth";
 import { createGraphQLError } from "graphql-yoga";
 
-export function hello(): string {
-	return "Hello world!";
-}
-
 export async function createUser(
 	parent: unknown,
 	args: { name: string; email: string; password: string }

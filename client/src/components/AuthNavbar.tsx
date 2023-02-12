@@ -15,10 +15,10 @@ const NavbarComponent = () => {
 							window.location.href = "/";
 						}}
 					>
-						<span className="font-bold text-2xl text-red-600 italic bg-white rounded-tl-md pl-2 tracking-wider rounded-bl-md">
+						<span className="font-bold text-2xl text-rose-600 italic bg-white rounded-tl-md pl-2 tracking-wider rounded-bl-md">
 							St
 						</span>
-						<span className="font-bold text-2xl bg-red-600 rounded-tr-md rounded-br-md pr-2 tracking-wider">
+						<span className="font-bold text-2xl bg-rose-600 rounded-tr-md rounded-br-md pr-2 tracking-wider">
 							reamy
 						</span>
 					</div>
