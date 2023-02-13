@@ -30,12 +30,14 @@ const FavouritesComponent = () => {
 	}, []);
 
 	return (
-		<div className="grid lg:grid-cols-4 gap-4">
-			{videosData?.length > 0 &&
-				videosData?.map((video: any, index: number) => {
-					return <VideoCard video={video} key={index} />;
-				})}
-		</div>
+		<>
+			<div className="grid lg:grid-cols-4 gap-4">
+				{videosData?.length > 0 &&
+					videosData?.map((video: any, index: number) => {
+						return <VideoCard video={video} key={index} />;
+					})}
+			</div>
+		</>
 	);
 };
 
