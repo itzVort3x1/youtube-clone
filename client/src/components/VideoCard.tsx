@@ -19,14 +19,15 @@ const VideoCard = ({
 		id: { videoId },
 		snippet,
 	},
+	showBookmark,
 }: {
 	video: { id: { videoId: string }; snippet: any };
+	showBookmark?: boolean;
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const $isLoggedIn = useStore(isLoggedIn);
 	const [isAuth] = useState(JSON.parse($isLoggedIn));
 	const details = JSON.parse(useStore(userDetails));
-	console.log(details);
 
 	function handleAddFavourite(videoId: string) {
 		var graphql = JSON.stringify({
@@ -153,7 +154,7 @@ const VideoCard = ({
 								<MdiCheckCircle className="ml-2 mt-0.5" />
 							</span>
 						</a>
-						{handleIconRender(videoId)}
+						{showBookmark && handleIconRender(videoId)}
 						{/* {details.bookmarks.map((item) => {
 							if (item.video_id === videoId) {
 								return (
