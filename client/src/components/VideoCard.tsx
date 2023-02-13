@@ -19,10 +19,8 @@ const VideoCard = ({
 		id: { videoId },
 		snippet,
 	},
-	showBookmark,
 }: {
 	video: { id: { videoId: string }; snippet: any };
-	showBookmark?: boolean;
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const $isLoggedIn = useStore(isLoggedIn);
@@ -85,6 +83,7 @@ const VideoCard = ({
 	}
 
 	function handleIconRender(videoId: string) {
+		console.log(snippet);
 		return details?.bookmarks?.find(
 			(bookmark: any) => bookmark.video_id === videoId
 		) ? (
@@ -154,7 +153,7 @@ const VideoCard = ({
 								<MdiCheckCircle className="ml-2 mt-0.5" />
 							</span>
 						</a>
-						{showBookmark && handleIconRender(videoId)}
+						{handleIconRender(videoId)}
 						{/* {details.bookmarks.map((item) => {
 							if (item.video_id === videoId) {
 								return (

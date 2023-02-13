@@ -23,7 +23,7 @@ const AccountCardComponent = () => {
 				</div>
 			</div>
 			<div className="p-3">
-				<FavouritesComponent favourites={details.bookmarks} />
+				<FavouritesComponent />
 			</div>
 		</>
 	);
