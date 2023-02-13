@@ -10,7 +10,7 @@ import { MdiCheckCircle } from "../assets/CheckCricleIcon";
 import { BookmarkIcon, BookmarkIconSolid } from "../assets/BookmarkIcon";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { isLoggedIn, userDetails } from "../store/store";
+import { isLoggedIn, userDetails, token } from "../store/store";
 import { useStore } from "@nanostores/react";
 import headers from "../utils/headers";
 
@@ -34,6 +34,8 @@ const VideoCard = ({
 			variables: { user_id: details.user.id, video_id: videoId },
 		});
 
+		headers.append("Authorization", `Bearer ${token.get()}`);
+
 		var requestOptions = {
 			method: "POST",
 			headers: headers,
@@ -44,6 +46,7 @@ const VideoCard = ({
 			.then((response) => response.text())
 			.then((result) => {
 				const { data, errors } = JSON.parse(result);
+				console.log(errors);
 				userDetails.set(
 					JSON.stringify({
 						...details,
@@ -60,6 +63,8 @@ const VideoCard = ({
 				"mutation deleteBookmark($user_id: ID!, $video_id: String!){\n  deleteBookmark(user_id: $user_id, video_id: $video_id){\n    video_id\n    user_id\n  }\n}",
 			variables: { user_id: details.user.id, video_id: videoId },
 		});
+
+		headers.append("Authorization", `Bearer ${token.get()}`);
 
 		var requestOptions = {
 			method: "POST",

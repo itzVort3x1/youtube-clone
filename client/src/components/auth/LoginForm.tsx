@@ -30,6 +30,8 @@ const LoginFormComponent = () => {
 			variables: { id: id },
 		});
 
+		headers.append("Authorization", `Bearer ${token.get()}`);
+
 		var requestOptions = {
 			method: "POST",
 			headers: headers,
@@ -39,13 +41,13 @@ const LoginFormComponent = () => {
 			.then((response) => response.text())
 			.then((result) => {
 				const { data, errors } = JSON.parse(result);
+				console.log(data);
 				if (errors?.length) {
 					setErrorMessage(errors[0].message);
 					clearErrTextTimeout();
 					return;
 				}
 				userDetails.set(JSON.stringify(data.loggedInUser));
-				token.set(data.loggedInUser.token);
 				isLoggedIn.set(JSON.stringify(true));
 				window.location.href = "/";
 			})
@@ -68,12 +70,14 @@ const LoginFormComponent = () => {
 			.then((response) => response.text())
 			.then((result) => {
 				const { data, errors } = JSON.parse(result);
+				console.log(data);
 				console.log(errors);
 				if (errors?.length) {
 					setErrorMessage(errors[0].message);
 					clearErrTextTimeout();
 					return;
 				}
+				token.set(data.loginUser.token);
 				handleUserDetails(data.loginUser.user.id);
 			})
 			.catch((error) => console.log("error", error));
