@@ -18,7 +18,10 @@ const FeedComponent = () => {
 			(res) => res
 		);
 
-	const { data, mutate, error, isLoading } = useSWR("/feed", fetcher);
+	const { data, mutate, error, isLoading } = useSWR(
+		`/feed/${selectedCategory}`,
+		fetcher
+	);
 	useEffect(() => {
 		// here mutate is used to call the useSWR hook again
 		mutate();
