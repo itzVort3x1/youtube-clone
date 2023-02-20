@@ -12,7 +12,6 @@ const VideosComponent = ({
 	return (
 		<div className={`grid gap-4 ${grids} mt-3`}>
 			{videos.map((video, index) => {
-				console.log(video);
 				return (
 					<div key={index}>
 						{video.id.videoId && <VideoCard video={video} />}

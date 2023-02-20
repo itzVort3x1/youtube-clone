@@ -5,26 +5,37 @@ import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { useStore } from "@nanostores/react";
 import { isLoggedIn, token } from "../store/store";
 import {} from "../store/store";
+import useSWR from "swr";
 
 const FeedComponent = () => {
 	const [selectedCategory, setSelectedCategory] = useState("New");
-	const [videos, setVideos] = useState<any[]>([]);
 
 	const $token = useStore(token);
 	const $isLoggedIn = useStore(isLoggedIn);
 
+	const fetcher = () =>
+		fetchFromAPI(`search?part=snippet&q=${selectedCategory}`).then(
+			(res) => res
+		);
+
+	const { data, mutate, error, isLoading } = useSWR("/feed", fetcher);
 	useEffect(() => {
-		if (localStorage.getItem(selectedCategory)) {
-			setVideos(JSON.parse(localStorage.getItem(selectedCategory) || "[]"));
-			return;
-		} else {
-			fetchFromAPI(`search?part=snippet&q=${selectedCategory}`).then((data) => {
-				setVideos(data.items);
-				localStorage.setItem(selectedCategory, JSON.stringify(data.items));
-			});
-		}
+		// here mutate is used to call the useSWR hook again
+		mutate();
+		// setVideos(data?.items);
+		// if (localStorage.getItem(selectedCategory)) {
+		// 	setVideos(JSON.parse(localStorage.getItem(selectedCategory) || "[]"));
+		// 	return;
+		// } else {
+		// 	fetchFromAPI(`search?part=snippet&q=${selectedCategory}`).then((data) => {
+		// 		setVideos(data.items);
+		// 		localStorage.setItem(selectedCategory, JSON.stringify(data.items));
+		// 	});
+		// }
 	}, [selectedCategory]);
 
+	if (error) return <div>Failed to load</div>;
+	if (isLoading) return <div>Loading...</div>;
 	return (
 		<div className="flex lg:flex-row sm:flex-col bg-slate-800 text-white">
 			<div className="px-2  bg-gray-700 w-52 rounded-lg mx-2 my-2 top-12 fixed overflow-y-hidden">
@@ -44,7 +55,7 @@ const FeedComponent = () => {
 				</span>
 				<span className="text-rose-600 ml-2 text-3xl">videos</span>
 				<br />
-				<VideosComponent videos={videos} grids={"grid-cols-4"} />
+				<VideosComponent videos={data?.items} grids={"grid-cols-4"} />
 			</div>
 		</div>
 	);

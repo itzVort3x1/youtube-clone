@@ -46,7 +46,6 @@ const VideoCard = ({
 			.then((response) => response.text())
 			.then((result) => {
 				const { data, errors } = JSON.parse(result);
-				console.log(errors);
 				userDetails.set(
 					JSON.stringify({
 						...details,
@@ -88,7 +87,6 @@ const VideoCard = ({
 	}
 
 	function handleIconRender(videoId: string) {
-		console.log(snippet);
 		return details?.bookmarks?.find(
 			(bookmark: any) => bookmark.video_id === videoId
 		) ? (
@@ -127,7 +125,7 @@ const VideoCard = ({
 	}
 	return (
 		<>
-			<div className="max-w-md max-h-96 min-h-80 bg-white border border-gray-200 rounded-lg shadow dark:bg-transparent dark:border-gray-700">
+			<div className="max-w-md max-h-96 min-h-80 bg-slate-500 border border-slate-700 rounded-lg shadow dark:bg-transparent dark:border-gray-700">
 				<a href={`${videoId ? `/video/${videoId}` : demoVideoUrl}`}>
 					<img
 						className="rounded-t-lg"
